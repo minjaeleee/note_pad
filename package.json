@@ -1,0 +1,13 @@
+{
+  "name": "note_pad",
+  "version": "1.0.0",
+  "description": "toy project: note_pad",
+  "main": "index.js",
+  "repository": "https://github.com/minjaeleee/note_pad.git",
+  "author": "minjaeleee",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
