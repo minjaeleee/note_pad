@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { Fragment, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Box from '../components/Box'
 import Button from '../components/Button'
 import Editor from '../components/Editor'
@@ -60,26 +61,30 @@ const MainPage = () => {
         제출
       </Button>
       {
-        memoList.map(value => {
+        memoList.map((value,idx) => {
           return (
-            <Flex
+            <Link 
+              to={"/"+idx}                
               key={value.created_at} 
-              my="8px"
-              p="12px"
-              border={"#ccc solid 1px"}
-              flexDirection="column"
-            >
-              <Box 
-                dangerouslySetInnerHTML={{__html: value.content}}
-              />
-              <Box 
-                textAlign={"right"}
-                fontSize={"12px"} 
-                color="#555"
               >
-                  생성: {new Date(value.created_at).toLocaleString()}
-              </Box>
-            </Flex>
+              <Flex
+                my="8px"
+                p="12px"
+                border={"#ccc solid 1px"}
+                flexDirection="column"
+              >
+                <Box 
+                  dangerouslySetInnerHTML={{__html: value.content}}
+                />
+                <Box 
+                  textAlign={"right"}
+                  fontSize={"12px"} 
+                  color="#555"
+                >
+                    생성: {new Date(value.created_at).toLocaleString()}
+                </Box>
+              </Flex>
+            </Link>
           )
         })
       }
