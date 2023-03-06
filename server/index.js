@@ -1,5 +1,6 @@
 const express = require('express')
 const fs = require('fs')
+const cors = require('cors')
 
 const app = express()
 
@@ -8,7 +9,7 @@ let tmp = ""
 
 //  client side 요청(req)에서 body data를 해석하기 위해서 미들웨어 처리
 app.use(express.json())
-
+app.use(cors())
 const data = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
 
 function save() {
