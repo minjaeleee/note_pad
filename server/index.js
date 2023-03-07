@@ -1,6 +1,7 @@
 const express = require('express')
 const fs = require('fs')
 const cors = require('cors')
+const { v4 } = require('uuid')
 
 const app = express()
 
@@ -35,23 +36,25 @@ app.get('/', (req, res) => {
 })
 
 app.get('/:id', (req, res) => {
-  const id = parseInt(req.params.id)
+  const { id } = req.params
+  const dataId = data.find(list => list.id === id)
 
-  if (isNaN(id)) res.status(400).json({ msg: "잘못된 id입니다." })
-  if (data[id].deleted_at !== null) res.status(404).json({ msg: "이미 제거된 메모입니다." })
+  if (!isNaN(id)) res.status(400).json({ msg: "잘못된 id입니다." })
+  if (dataId.deleted_at !== null) res.status(404).json({ msg: "이미 제거된 메모입니다." })
 
-  res.json(data[id])
+  res.json(dataId)
 })
 
 // DELETE
 app.delete('/:id', (req, res) => {
   const id = parseInt(req.params.id)
+  const dataId = data.find(list => parseInt(list.id) === id)
 
   if (isNaN(id)) res.status(400).json({ msg: "잘못된 id입니다." })
-  if (data[id].deleted_at !== null) res.status(404).json({ msg: "이미 제거된 메모입니다." })
+  if (dataId.deleted_at !== null) res.status(404).json({ msg: "이미 제거된 메모입니다." })
 
-  data[id].deleted_at = Date.now()
-  res.json(data[id])
+  dataId.deleted_at = Date.now()
+  res.json(dataId)
 
   save()
 })
@@ -75,6 +78,7 @@ app.post('/', (req, res) => {
   if (!content || content.length === 0) res.status(400).json({ msg: "content가 올바르지 않습니다." })
 
   const list = {
+    id: v4(),
     content,
     created_at: Date.now(),
     updated_at: null,
@@ -88,17 +92,18 @@ app.post('/', (req, res) => {
 
 // UPDATE
 app.put('/:id', (req, res) => {
-  const id = parseInt(req.params.id)
+  const { id } = req.params
+  const dataId = data.find(list => list.id === id)
   const { content } = req.body
 
   if (!content || content.length === 0) res.status(400).json({ msg: "content가 올바르지 않습니다." })
-  if (isNaN(id)) res.status(400).json({ msg: "잘못된 id입니다." })
-  if (data[id].deleted_at !== null) res.status(404).json({ msg: "이미 제거된 메모입니다." })
+  if (!isNaN(id)) res.status(400).json({ msg: "잘못된 id입니다." })
+  if (dataId.deleted_at !== null) res.status(404).json({ msg: "이미 제거된 메모입니다." })
 
-  data[id].updated_at = Date.now()
-  data[id].content = content
+  dataId.updated_at = Date.now()
+  dataId.content = content
 
-  res.json(data[id])
+  res.json(dataId)
   save()
 })
 

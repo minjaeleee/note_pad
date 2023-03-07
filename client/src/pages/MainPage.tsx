@@ -61,10 +61,10 @@ const MainPage = () => {
         제출
       </Button>
       {
-        memoList.map((value,idx) => {
+        memoList.map(value => {
           return (
             <Link 
-              to={"/"+idx}                
+              to={`/${value.id}`}
               key={value.created_at} 
               >
               <Flex
