@@ -9,3 +9,4 @@ const MemoDetailPage = () => {
 }
 
 export default MemoDetailPage
+  
