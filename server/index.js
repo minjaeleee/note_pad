@@ -47,10 +47,10 @@ app.get('/:id', (req, res) => {
 
 // DELETE
 app.delete('/:id', (req, res) => {
-  const id = parseInt(req.params.id)
-  const dataId = data.find(list => parseInt(list.id) === id)
+  const { id } = req.params
+  const dataId = data.find(list => list.id === id)
 
-  if (isNaN(id)) res.status(400).json({ msg: "잘못된 id입니다." })
+  if (!isNaN(id)) res.status(400).json({ msg: "잘못된 id입니다." })
   if (dataId.deleted_at !== null) res.status(404).json({ msg: "이미 제거된 메모입니다." })
 
   dataId.deleted_at = Date.now()

@@ -6,6 +6,9 @@ import Button from '../components/Button'
 import Editor from '../components/Editor'
 import Flex from '../components/Flex'
 import Memo from '../interface/Memo'
+import {SlBookOpen} from 'react-icons/sl';
+import styles from './MainPage.module.css'
+
 
 const MainPage = () => {
   const [edit, setEdit] = useState('')
@@ -52,43 +55,48 @@ const MainPage = () => {
   },[edit])
 
   return (
-    <Box p="16px">
-      <h1>
-        클라우드메모장
-      </h1>
-      <Editor value={edit} onChange={setEdit}/>
-      <Button mt="8px" onClick={onSubmit}>
-        제출
-      </Button>
-      {
-        memoList.map(value => {
-          return (
-            <Link 
-              to={`/${value.id}`}
-              key={value.created_at} 
-              >
-              <Flex
-                my="8px"
-                p="12px"
-                border={"#ccc solid 1px"}
-                flexDirection="column"
-              >
-                <Box 
-                  dangerouslySetInnerHTML={{__html: value.content}}
-                />
-                <Box 
-                  textAlign={"right"}
-                  fontSize={"12px"} 
-                  color="#555"
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <SlBookOpen size="25"/>
+        <h1 className={styles.title}>
+          메모장
+        </h1>
+      </header>
+      <main className={styles.main}>
+        <Editor value={edit} onChange={setEdit}/>
+        <div className={styles.btnWrapper}>
+          <button className={styles.submitBtn} onClick={onSubmit}>
+            제출
+          </button>
+          <Link to={`/manager`}>
+            <button className={styles.manageBtn}>
+              관리자 모드
+            </button>
+          </Link>
+        </div>
+        <div className={styles.memoList}>
+        {
+          memoList.map(value => {
+            return (
+              <div className={styles.list}>
+                <Link 
+                  to={`/${value.id}`}
+                  key={value.created_at} 
                 >
-                    생성: {new Date(value.created_at).toLocaleString()}
-                </Box>
-              </Flex>
-            </Link>
-          )
-        })
-      }
-    </Box>
+                  {value.content}
+                        생성: {new Date(value.created_at).toLocaleString()}
+                    {
+                      value.updated_at &&
+                        <p>수정: {new Date(value.updated_at).toLocaleString()}</p> 
+                    }
+                </Link>
+              </div>
+            )
+          })
+        }
+        </div>
+      </main>
+    </div>
   )
 }
 

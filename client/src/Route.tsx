@@ -1,8 +1,8 @@
 import { Navigate,useRoutes } from 'react-router-dom'
 import MainPage from './pages/MainPage'
-import MemoDetailPage from './pages/MemoDetailPage'
-import MemoEditPage from './pages/MemoEditPage'
-import MemoManagerPage from './pages/MemoManagerPage'
+import MemoDetailPage from './pages/detail/MemoDetailPage'
+import MemoEditPage from './pages/edit/MemoEditPage'
+import MemoManagerPage from './pages/manager/MemoManagerPage'
 
 const Route = () => {
   return useRoutes([
