@@ -3,10 +3,10 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { VscChevronLeft, VscEdit, VscTrash} from "react-icons/vsc";
 
-import Box from "../components/Box"
-import Button from "../components/Button"
-import Flex from "../components/Flex"
-import Memo from "../interface/Memo"
+import Box from "../../components/Box"
+import Button from "../../components/Button"
+import Flex from "../../components/Flex"
+import Memo from "../../interface/Memo"
 
 const MemoDetailPage = () => {
   const navigate = useNavigate()

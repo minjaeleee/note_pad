@@ -4,11 +4,11 @@ import { Link, useNavigate } from "react-router-dom"
 import { VscChevronLeft } from "react-icons/vsc";
 
 
-import Box from "../components/Box"
-import Button from "../components/Button"
-import Editor from "../components/Editor"
-import Flex from "../components/Flex"
-import Memo from "../interface/Memo"
+import Box from "../../components/Box"
+import Button from "../../components/Button"
+import Editor from "../../components/Editor"
+import Flex from "../../components/Flex"
+import Memo from "../../interface/Memo"
 
 const MemoManagerPage = () => {
   const navigate = useNavigate()

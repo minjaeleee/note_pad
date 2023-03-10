@@ -3,10 +3,10 @@ import { useCallback, useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { VscChevronLeft } from "react-icons/vsc";
 
-import Box from "../components/Box"
-import Button from "../components/Button"
-import Editor from "../components/Editor"
-import Flex from "../components/Flex";
+import Box from "../../components/Box"
+import Button from "../../components/Button"
+import Editor from "../../components/Editor"
+import Flex from "../../components/Flex";
 
 const MemoEditPage = () => {
   const{id} = useParams()
