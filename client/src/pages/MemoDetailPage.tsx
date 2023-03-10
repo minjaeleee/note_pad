@@ -55,6 +55,7 @@ const MemoDetailPage = () => {
         flexDirection="column"
       >
         <Box 
+          className='memo-content'
           dangerouslySetInnerHTML={{__html: memo.content}}
         />
         <Box 
@@ -75,16 +76,14 @@ const MemoDetailPage = () => {
           </Box>
         }
         <Flex justifyContent={"flex-end"} style={{gap:8}}>
-          <Link to ={"/edit"}>
+          <Link to ={`/${id}/edit`}>
             <Button square>
               <VscEdit />
             </Button>
           </Link>
-          <Link to ={"/edit"}>
             <Button square onClick={onDelete}>
               <VscTrash />
             </Button>
-          </Link>
         </Flex>
       </Flex>
     </Box>

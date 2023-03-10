@@ -57,16 +57,28 @@ const MainPage = () => {
         클라우드메모장
       </h1>
       <Editor value={edit} onChange={setEdit}/>
-      <Button mt="8px" onClick={onSubmit}>
-        제출
-      </Button>
+      <Flex 
+        justifyContent={"flex-end"} 
+        style={{
+          gap: "8px"
+        }}
+      >
+        <Button mt="8px" onClick={onSubmit}>
+          제출
+        </Button>
+        <Link to={`/manager`}>
+          <Button mt="8px">
+            관리자
+          </Button>
+        </Link>
+	  	</Flex>
       {
         memoList.map(value => {
           return (
             <Link 
               to={`/${value.id}`}
               key={value.created_at} 
-              >
+            >
               <Flex
                 my="8px"
                 p="12px"
@@ -74,6 +86,7 @@ const MainPage = () => {
                 flexDirection="column"
               >
                 <Box 
+                  className='memo-content'
                   dangerouslySetInnerHTML={{__html: value.content}}
                 />
                 <Box 
@@ -83,6 +96,14 @@ const MainPage = () => {
                 >
                     생성: {new Date(value.created_at).toLocaleString()}
                 </Box>
+                {
+                  value.updated_at &&
+                    <Box
+                      textAlign={"right"}
+                      fontSize={"12px"} color="#555">
+                      수정: {new Date(value.updated_at).toLocaleString()}
+                    </Box>
+                }
               </Flex>
             </Link>
           )
