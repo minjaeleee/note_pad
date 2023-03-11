@@ -56,7 +56,7 @@ const MainPage = () => {
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        <SlBookOpen size="25"/>
+        <SlBookOpen size="30"/>
         <h1 className={styles.title}>
           메모장
         </h1>
@@ -82,9 +82,11 @@ const MainPage = () => {
                   key={value.created_at} 
                 >
                   <div className={styles.list}>
-                      <p className={styles.content}>
-                        {value.content}
-                      </p>
+                    <div 
+                      className={styles.content}
+                      dangerouslySetInnerHTML={{__html: value.content}}
+                    >
+                    </div>
                     <div className={styles.extraInfo}>
                         <p> 생성: {new Date(value.created_at).toLocaleString()} </p>
                       {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { VscChevronLeft, VscEdit, VscTrash} from "react-icons/vsc";
-import {BiDetail} from "react-icons/bi"
+import { BiCommentDetail } from "react-icons/bi"
 import axios from "axios"
 
 import Memo from "../../interface/Memo"
@@ -50,14 +50,18 @@ const MemoDetailPage = () => {
           </button>
         </Link>
         <div className={styles.titleWrapper}>
-          <BiDetail size="30"/>
+          <BiCommentDetail size="30"/>
           <h1 className={styles.title}>
             메모 상세 페이지
           </h1>
         </div>
       </header>
       <main className={styles.main}>
-        <p className={styles.content}>{memo.content}</p>
+        <div 
+          className={styles.content}
+          dangerouslySetInnerHTML={{__html:memo.content}}
+        >
+        </div>
         <div className={styles.extraInfo}>
           <p>생성: {new Date(memo.created_at).toLocaleString()}</p>
           {

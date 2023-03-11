@@ -29,48 +29,49 @@
   }
 }
 
+.selectBtnWrapper {
+  margin-top: 20px;
+  
+  .isSelectedAllBtn {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 80px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
 
-
-.main{
-  margin-top: 25px;
-  border: 1px solid rgba(98, 96, 96, 0.5);
-  border-radius: 5px;
-
+  .removedSelectedBtn, .allRemovedBtn{
+    @extend .isSelectedAllBtn;
+  }
+}
+.memoList {
+  .list {
+    margin: 20px 0;
+    width: 100%;
+    border: 1px solid rgba(98, 96, 96, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .list:hover {
+    border: 1px solid rgba(203, 201, 201, 0.5);
+    background-color: rgba(203, 201, 201, 0.5);
+  }
+  
   .content {
     margin:10px;
     word-wrap: break-word;
     word-break: break-all;
   }
-
+  
   .extraInfo {
     display: flex;
     justify-content: flex-end;
+  
     margin-right: 10px;
     margin-bottom: 10px;
     color:darkgray;
     font-size: 12px;
   }
 }
-
-.footer {
-  display: flex;
-  justify-content: flex-end;
-  margin: 20px 0;
-
-  .editingBtn {
-      margin-left: 10px;
-      border: 1px solid rgba(205, 201, 201, 0.5);
-      background-color: #fff;
-      border-radius: 5px;
-      width: 50px;
-      height: 35px;
-      cursor: pointer;
-    }
-  .editingBtn:hover {
-    background-color: rgba(212, 208, 208, 0.5);
-  }
-  
-    .deletingBtn {
-      @extend .editingBtn;
-    }
-  }
