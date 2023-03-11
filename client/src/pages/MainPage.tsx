@@ -1,25 +1,25 @@
 import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Box from '../components/Box'
-import Button from '../components/Button'
-import Editor from '../components/Editor'
-import Flex from '../components/Flex'
-import Memo from '../interface/Memo'
 import {SlBookOpen} from 'react-icons/sl';
-import styles from './MainPage.module.css'
 
+import Editor from '../components/Editor'
+import Memo from '../interface/Memo'
+
+import styles from './MainPage.module.scss'
 
 const MainPage = () => {
   const [edit, setEdit] = useState('')
   const [memoList, setMemoList] = useState<Memo[]>([])
 
-  // 임시 저장된 값을 불러옴
   useEffect(()=> {
+    // 임시 저장된 값을 불러옴
     (async()=>{
       const {data:{result}} =  await axios.get('/tmp')
       setEdit(result)
     })()
+
+    // 전체 메모장 READ
     loadMemo()
   },[])
 
@@ -35,8 +35,8 @@ const MainPage = () => {
   },[edit])
 
   const loadMemo = useCallback(async()=>{
-    const {data} = await axios.get<Memo[]>('/')
-    setMemoList(data)
+    const {data} = await axios.get('/')
+    setMemoList(data.reverse())
   },[setMemoList])
 
   const onSubmit = useCallback(async()=>{
@@ -48,10 +48,9 @@ const MainPage = () => {
       const {data} = await axios.post('/', {
         content: onlyTextContent
       })
-      setMemoList(prev => [...prev, data])
+      setMemoList(prev => [data, ...prev])
       setEdit('')
     }
-
   },[edit])
 
   return (
@@ -78,19 +77,23 @@ const MainPage = () => {
         {
           memoList.map(value => {
             return (
-              <div className={styles.list}>
                 <Link 
                   to={`/${value.id}`}
                   key={value.created_at} 
                 >
-                  {value.content}
-                        생성: {new Date(value.created_at).toLocaleString()}
-                    {
-                      value.updated_at &&
-                        <p>수정: {new Date(value.updated_at).toLocaleString()}</p> 
-                    }
+                  <div className={styles.list}>
+                      <p className={styles.content}>
+                        {value.content}
+                      </p>
+                    <div className={styles.extraInfo}>
+                        <p> 생성: {new Date(value.created_at).toLocaleString()} </p>
+                      {
+                        value.updated_at &&
+                          <p>수정: {new Date(value.updated_at).toLocaleString()}</p> 
+                      }
+                    </div>
+                  </div>
                 </Link>
-              </div>
             )
           })
         }

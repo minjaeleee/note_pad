@@ -1,12 +1,12 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { VscChevronLeft, VscEdit, VscTrash} from "react-icons/vsc";
+import {BiDetail} from "react-icons/bi"
+import axios from "axios"
 
-import Box from "../../components/Box"
-import Button from "../../components/Button"
-import Flex from "../../components/Flex"
 import Memo from "../../interface/Memo"
+
+import styles from './MemoDetailPage.module.scss'
 
 const MemoDetailPage = () => {
   const navigate = useNavigate()
@@ -42,51 +42,44 @@ const MemoDetailPage = () => {
   if(memo === null) return <></>;
 
   return (
-    <Box p="16px">
-      <Link to={"/"}> 
-        <Button square >
-          <VscChevronLeft/>
-        </Button>
-      </Link>
-      <Flex
-        my="8px"
-        p="12px"
-        border={"#ccc solid 1px"}
-        flexDirection="column"
-      >
-        <Box 
-          className='memo-content'
-          dangerouslySetInnerHTML={{__html: memo.content}}
-        />
-        <Box 
-          textAlign={"right"}
-          fontSize={"12px"} 
-          color="#555"
-        >
-            생성: {new Date(memo.created_at).toLocaleString()}
-        </Box>
-        {
-          memo.updated_at !== null &&
-          <Box 
-            textAlign={"right"}
-            fontSize={"12px"} 
-            color="#555"
-          >
-              수정: {new Date(memo.updated_at).toLocaleString()}
-          </Box>
-        }
-        <Flex justifyContent={"flex-end"} style={{gap:8}}>
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <Link to={"/"}> 
+          <button className={styles.backBtn}>
+            <VscChevronLeft size="30"/>
+          </button>
+        </Link>
+        <div className={styles.titleWrapper}>
+          <BiDetail size="30"/>
+          <h1 className={styles.title}>
+            메모 상세 페이지
+          </h1>
+        </div>
+      </header>
+      <main className={styles.main}>
+        <p className={styles.content}>{memo.content}</p>
+        <div className={styles.extraInfo}>
+          <p>생성: {new Date(memo.created_at).toLocaleString()}</p>
+          {
+            memo.updated_at !== null &&
+                <p>수정: {new Date(memo.updated_at).toLocaleString()}</p>
+          }
+        </div>
+      </main>
+      <footer className={styles.footer}>
           <Link to ={`/${id}/edit`}>
-            <Button square>
-              <VscEdit />
-            </Button>
+            <button className={styles.editingBtn}>
+              <VscEdit size="25"/>
+            </button>
           </Link>
-            <Button square onClick={onDelete}>
-              <VscTrash />
-            </Button>
-        </Flex>
-      </Flex>
-    </Box>
+            <button 
+              className={styles.deletingBtn}
+              onClick={onDelete}
+            >
+              <VscTrash size="25"/>
+            </button>
+      </footer>
+    </div>
   )
 }
 
