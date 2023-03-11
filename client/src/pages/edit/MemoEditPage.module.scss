@@ -1,0 +1,57 @@
+.wrapper {
+  margin: 20px;
+}
+
+.header {
+  display: flex;
+
+  .backBtn {
+    position:fixed;
+    top: 23px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .backBtn:hover {
+    background-color: rgba(212, 208, 208, 0.1);
+  }
+
+  .titleWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .title {
+      margin-left: 10px;
+    }
+  }
+}
+
+.main {
+  margin: 25px 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0;
+
+  .editingBtn {
+      margin-left: 10px;
+      border: 1px solid rgba(205, 201, 201, 0.5);
+      background-color: #fff;
+      border-radius: 5px;
+      width: 50px;
+      height: 35px;
+      cursor: pointer;
+    }
+  .editingBtn:hover {
+    background-color: rgba(212, 208, 208, 0.5);
+  }
+  
+    .deletingBtn {
+      @extend .editingBtn;
+    }
+  }

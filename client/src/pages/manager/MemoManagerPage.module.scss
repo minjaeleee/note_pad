@@ -1,0 +1,77 @@
+.wrapper {
+  margin: 20px;
+}
+
+.header {
+  display: flex;
+
+  .backBtn {
+    position:fixed;
+    top: 23px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .backBtn:hover {
+    background-color: rgba(212, 208, 208, 0.1);
+  }
+
+  .titleWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .title {
+      margin-left: 10px;
+    }
+  }
+}
+
+.selectBtnWrapper {
+  margin-top: 20px;
+  
+  .isSelectedAllBtn {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    min-width: 80px;
+    height: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .removedSelectedBtn, .allRemovedBtn{
+    @extend .isSelectedAllBtn;
+  }
+}
+.memoList {
+  .list {
+    margin: 20px 0;
+    width: 100%;
+    border: 1px solid rgba(98, 96, 96, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .list:hover {
+    border: 1px solid rgba(203, 201, 201, 0.5);
+    background-color: rgba(203, 201, 201, 0.5);
+  }
+  
+  .content {
+    margin:10px;
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+  
+  .extraInfo {
+    display: flex;
+    justify-content: flex-end;
+  
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color:darkgray;
+    font-size: 12px;
+  }
+}

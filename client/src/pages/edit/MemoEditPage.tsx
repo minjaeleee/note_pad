@@ -1,12 +1,13 @@
 import axios from "axios"
 import { useCallback, useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { VscChevronLeft } from "react-icons/vsc";
+import { VscChevronLeft, VscEdit, VscRefresh, VscTrash } from "react-icons/vsc";
+import { BiCommentEdit } from 'react-icons/bi'
 
-import Box from "../../components/Box"
-import Button from "../../components/Button"
+
 import Editor from "../../components/Editor"
-import Flex from "../../components/Flex";
+
+import styles from './MemoEditPage.module.scss'
 
 const MemoEditPage = () => {
   const{id} = useParams()
@@ -42,31 +43,37 @@ const MemoEditPage = () => {
   if(edit === null) return <></>;
 
   return (
-    <Box p="16px">
-      <Link to={`/${id}`}> 
-        <Button square >
-          <VscChevronLeft/>
-        </Button>
-      </Link>
-      <h1>
-        메모 수정
-      </h1>
-      <Editor value={edit} onChange={setEdit} />
-      <Flex 
-        justifyContent={"flex-end"} 
-        style={{
-        gap: "8px"
-      }}>
-        <Button mt="8px" onClick={onSubmit}>
-          수정
-        </Button>
-        <Link to={`/${id}`}>
-          <Button mt="8px">
-            취소
-          </Button>
+    <div className={styles.wrapper}>
+      <header className={styles.header}>
+        <Link to={`/${id}`}> 
+            <button className={styles.backBtn}>
+              <VscChevronLeft size="30"/>
+            </button>
         </Link>
-		</Flex>
-    </Box>
+        <div className={styles.titleWrapper}>
+          <BiCommentEdit size="30"/>
+          <h1 className={styles.title}>
+            메모 수정
+          </h1>
+        </div>
+      </header>
+      <main className={styles.main}>
+        <Editor value={edit} onChange={setEdit} />
+      </main>
+      <footer className={styles.footer}>
+        <button 
+          className={styles.editingBtn}
+          onClick={onSubmit}
+        >
+          <VscEdit size="25"/>
+        </button>
+        <Link to={`/${id}`}>
+          <button className={styles.deletingBtn}>
+            <VscTrash size="25"/>
+          </button>
+        </Link>
+      </footer>
+    </div>
   )
 }
 
