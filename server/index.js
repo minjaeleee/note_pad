@@ -84,7 +84,7 @@ app.post('/', (req, res) => {
     updated_at: null,
     deleted_at: null
   }
-  data.push(list)
+  data.unshift(list)
 
   res.json(list)
   save()
