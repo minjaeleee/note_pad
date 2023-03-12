@@ -10,7 +10,6 @@ const Editor = (props: EditorProps) => {
     {...props}
     modules={{
       toolbar: [
-        ["image"],
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
         ['blockquote', 'code-block'],
   
