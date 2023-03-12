@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useCallback, useEffect, useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { VscChevronLeft } from "react-icons/vsc";
 import { GrUserManager } from "react-icons/gr"
 
@@ -9,8 +9,6 @@ import Memo from "../../interface/Memo"
 import styles from './MemoManagerPage.module.scss'
 
 const MemoManagerPage = () => {
-  const navigate = useNavigate()
-
   const [memoList, setMemoList] = useState<Memo[]>([])
   const [selectedMemoList, setSelectedMemoList] = useState<string[]>([])
 

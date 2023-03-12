@@ -49,6 +49,11 @@
       word-wrap: break-word;
       word-break: break-all;
     }
+
+    blockquote {
+      padding: 0 1em;
+      border-left: 0.25em solid darkgrey;
+    }
     
     .extraInfo {
       display: flex;
