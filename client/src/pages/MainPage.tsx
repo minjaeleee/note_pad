@@ -36,7 +36,7 @@ const MainPage = () => {
 
   const loadMemo = useCallback(async()=>{
     const {data} = await axios.get('/')
-    setMemoList(data.reverse())
+    setMemoList(data)
   },[setMemoList])
 
   const onSubmit = useCallback(async()=>{
