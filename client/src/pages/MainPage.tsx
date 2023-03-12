@@ -46,7 +46,7 @@ const MainPage = () => {
       return;
     } else {
       const {data} = await axios.post('/', {
-        content: onlyTextContent
+        content: edit
       })
       setMemoList(prev => [data, ...prev])
       setEdit('')
