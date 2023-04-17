@@ -4,8 +4,11 @@
 <blockquote> React + Typescript + Node js를 이용한 메모장 만들기 토이 프로젝트입니다. </blockquote>
 
 <h1> 주요 기능 </h1>
-<p>기술 블로그에 기술<p>
-https://velog.io/@jeveloper/%ED%86%A0%EC%9D%B4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A9%94%EB%AA%A8%EC%9E%A5-%EA%B5%AC%ED%98%84
+<a href= "https://velog.io/@jeveloper/%ED%86%A0%EC%9D%B4-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EB%A9%94%EB%AA%A8%EC%9E%A5-%EA%B5%AC%ED%98%84">
+  <p>기술 블로그에 상세하게 보러가기<p>
+</a>
+
+
 
 <h1> 실행 방법 </h1>
 
